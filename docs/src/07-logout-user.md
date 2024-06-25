@@ -1,4 +1,4 @@
-# Building a Real-Time Chat Application (Part 8)
+# Real-Time Chat Application
 
 ## Implementing Logout Functionality
 
@@ -154,5 +154,3 @@ In the last episode, we conditionally rendered our routes based on the user's au
 ### Summary
 
 In this episode, we implemented the logout functionality by creating a `logoutUser` function in the `AuthContext` and updating the `Navbar` component to include a logout link. This allows users to log out, clearing the state and local storage, and conditionally rendering the appropriate navigation links based on the user's authentication status. In the next episode, we will handle user login and continue building our real-time chat application.
-
-Stay tuned for more detailed tutorials on building a robust real-time chat application.

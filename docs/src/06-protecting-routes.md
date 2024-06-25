@@ -149,5 +149,3 @@ In the previous episode, we successfully registered a user and saved their data 
 ### Summary
 
 In this episode, we implemented route protection based on user authentication status and persisted the user state across page refreshes. This ensures that users remain logged in even after refreshing the page and cannot access certain routes unless authenticated. In the next episode, we will implement the logout functionality to allow users to log out and handle the state accordingly.
-
-Stay tuned for more detailed tutorials on building a robust real-time chat application.

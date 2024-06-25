@@ -1,48 +1,48 @@
-# Building a Real-Time Chat Application (Part 17)
+# Real-Time Chat Application
 
-## Adding a Notification System with Socket.IO
+## Adding Notifications and Auto-Scroll to the Chat App
 
-In this tutorial, we will implement a notification system in our real-time chat application. This feature will allow users to receive notifications for new messages even if they are not actively viewing the chat. We will also enhance the chat interface with auto-scrolling to ensure users always see the latest messages without manual scrolling.
+In this tutorial, we will enhance our chat application by adding a notification system using Socket.IO. This will enable users to receive real-time notifications for new messages, even when they are not actively viewing the chat. Additionally, we will implement an auto-scroll feature to ensure the latest messages are always visible.
 
-### Step 1: Implementing Auto-Scroll in the Chat Box
+### Step 1: Implementing Auto-Scroll in Chat Box
 
-First, we will add auto-scroll functionality to our chat box to automatically scroll to the latest message.
+We will start by adding an auto-scroll feature to the chat box, ensuring that the latest messages are always in view.
 
-1. **Update Chat Box Component:**
+1. **Update ChatBox Component:**
 
    ```javascript
    // client/src/components/Chat/ChatBox.jsx
-   import React, { useEffect, useRef, useContext } from 'react';
+   import React, { useRef, useEffect } from 'react';
    import { Stack } from 'react-bootstrap';
-   import { ChatContext } from '../../context/ChatContext';
+   import { useChatContext } from '../../context/ChatContext';
 
    const ChatBox = () => {
-       const { messages } = useContext(ChatContext);
+       const { messages, user } = useChatContext();
        const scrollRef = useRef();
 
        useEffect(() => {
-           if (scrollRef.current) {
-               scrollRef.current.scrollIntoView({ behavior: 'smooth' });
-           }
+           scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
        }, [messages]);
 
        return (
-           <Stack>
-               {messages.map((message, index) => (
-                   <div key={index} ref={scrollRef}>
-                       {/* Render message here */}
-                   </div>
-               ))}
-           </Stack>
+           <div className="chat-box">
+               <Stack gap={2}>
+                   {messages.map((message, index) => (
+                       <div key={index} ref={scrollRef}>
+                           <span>{message.text}</span>
+                       </div>
+                   ))}
+               </Stack>
+           </div>
        );
    };
 
    export default ChatBox;
    ```
 
-### Step 2: Sending Notifications to the Client
+### Step 2: Setting Up Notifications on the Server
 
-Next, we will update our Socket.IO server to send notifications to users when they receive new messages.
+We will update our Socket.IO server to handle notifications by emitting an event when a new message is sent.
 
 1. **Update the Socket.IO Server:**
 
@@ -74,6 +74,7 @@ Next, we will update our Socket.IO server to send notifications to users when th
                    senderId,
                    text,
                });
+               // Emit notification event
                io.to(user.socketId).emit("getNotification", {
                    senderId,
                    text,
@@ -94,16 +95,16 @@ Next, we will update our Socket.IO server to send notifications to users when th
 
 ### Step 3: Handling Notifications on the Client
 
-We will update the client-side code to handle notifications and display them to the user.
+Next, we need to update our client-side code to handle the `getNotification` event and display notifications to users when they receive new messages.
 
 1. **Update Chat Context to Handle Notifications:**
 
    ```javascript
    // client/src/context/ChatContext.jsx
    import React, { createContext, useState, useEffect, useCallback } from 'react';
-   import { io } from 'socket.io-client';
    import { getRequest, postRequest } from '../services';
    import { baseURL } from '../services';
+   import { io } from 'socket.io-client';
 
    export const ChatContext = createContext();
 
@@ -140,6 +141,7 @@ We will update the client-side code to handle notifications and display them to 
                    }
                });
 
+               // Listen for notifications
                socket.on("getNotification", (data) => {
                    setNotifications((prev) => [...prev, data]);
                });
@@ -243,83 +245,60 @@ We will update the client-side code to handle notifications and display them to 
    };
    ```
 
-2. **Update Notification Component:**
+2. **Update the Main Chat Component to Display Notifications:**
 
    ```javascript
-   // client/src/components/Notification.jsx
-   import React, { useContext, useState } from 'react';
+   // client/src/pages/Chat.jsx
+   import React, { useContext } from 'react';
+   import { Container, Stack } from 'react-bootstrap';
    import { ChatContext } from '../context/ChatContext';
-   import moment from 'moment';
+   import UserCard from '../components/Chat/UserCard';
+   import PotentialChats from '../components/Chat/PotentialChats';
+   import ChatBox from '../components/Chat/ChatBox';
 
-   const Notification = () => {
-       const { notifications, userChats, updateCurrentChat } = useContext(ChatContext);
-       const [isOpen, setIsOpen] = useState(false);
+   const Chat = () => {
+       const { userChats, isUserChatsLoading, userChatsError, updateCurrentChat, notifications } = useContext(ChatContext);
 
-       const handleNotificationClick = (notification) => {
-           const chat = userChats.find((chat) =>
-               chat.members.includes(notification.senderId)
-           );
-           updateCurrentChat(chat);
-           setIsOpen(false);
-       };
+       if (isUserChatsLoading) {
+           return <p>Loading chats...</p>;
+       }
+
+       if (userChatsError) {
+           return <p>Error loading chats: {userChatsError.message}</p>;
+       }
 
        return (
-           <div className="notifications">
-               <div className="notifications-icon" onClick={() => setIsOpen(!isOpen)}>
-                   <svg
-                       xmlns="http://www.w3.org/2000/svg"
-                       width="16"
-                       height="16"
-                       fill="currentColor"
-                       className="bi bi-chat-dots"
-                       viewBox="0 0 16 16"
-                   >
-                       <path d="M8 1a7 7 0 0 0-6.978 6.583A5.5 5.5 0 1 1 10.5 15c0-1.032-.25-2.014-.696-2.888C9.99 11.445 9.966 11.5 10 11.5a1.5 1.5 0 0 0 0-3c-.035 0-.057.054-.104.106C9.25 9.514 9 9.496 9 9.496V9c0-.276-.224-.5-.5-.5s-.5.224-.5
-
-.5v.496s-.25.018-.396-.106A.5.5 0 1 0 7 8.5v-.5c0-.276.224-.5.5-.5s.5.224.5.5v.5c0 .276-.224.5-.5.5a1.5 1.5 0 0 0 0 3c.034 0 .057-.055.104-.106C6.25 11.514 6 11.496 6 11.496v.004s.25-.018.396.106A1.5 1.5 0 1 0 7 13.5c.552 0 1-.448 1-1 0-.035-.056-.057-.104-.104C7.986 12.75 7.964 12.75 8 12.75c.25 0 .456.054.5.106C8.75 12.514 9 12.496 9 12.496v-.004s-.25.018-.396-.106A1.5 1.5 0 1 0 10 13.5c.552 0 1-.448 1-1 0-.035-.056-.057-.104-.104C10.25 12.75 10 12.732 10 12.732s.25-.018.396.106C10.75 12.514 11 12.496 11 12.496V9.496c0 .275.225.5.5.5s.5-.225.5-.5v.496s.25-.018.396.106C11.75 10.486 12 10.5 12 10.5a1.5 1.5 0 0 0 0-3c-.035 0-.057.054-.104.106C11.25 7.514 11 7.496 11 7.496V9c0 .276-.224.5-.5.5s-.5-.224-.5-.5V6.496s.25-.018.396.106A.5.5 0 1 0 10 5.5v-.5c0-.276.224-.5.5-.5s.5.224.5.5v.5c0 .276-.224.5-.5.5A1.5 1.5 0 0 0 8 7c-.035 0-.057-.054-.104-.106C7.25 6.514 7 6.496 7 6.496v.004s.25-.018.396.106A1.5 1.5 0 1 0 8 7.5c.552 0 1-.448 1-1 0-.035-.056-.057-.104-.104C8.25 6.75 8 6.732 8 6.732s.25-.018.396.106C8.75 6.514 9 6.496 9 6.496V1.5a.5.5 0 0 0-.5-.5zm1 10.5v-1a1.5 1.5 0 1 1-3 0v1a1.5 1.5 0 1 1 3 0z" />
-                   </svg>
-                   {notifications.length > 0 && (
-                       <span className="notification-count">
-                           {notifications.length}
-                       </span>
-                   )}
-               </div>
-               {isOpen && (
-                   <div className="notifications-box">
-                       <div className="notifications-header">
-                           <h3>Notifications</h3>
-                           <div className="mark-as-read" onClick={() => setNotifications([])}>
-                               Mark all as read
+           <Container>
+               <Stack direction="horizontal" gap={4}>
+                   <Stack gap={3} className="user-chat-list">
+                       {userChats?.map((chat, index) => (
+                           <div key={index} onClick={() => updateCurrentChat(chat)}>
+                               <UserCard chat={chat} />
                            </div>
-                       </div>
-                       {notifications.length === 0 ? (
-                           <span>No notifications yet</span>
-                       ) : (
-                           notifications.map((notification, index) => (
-                               <div
-                                   key={index}
-                                   className={`notification ${notification.isRead ? 'read' : 'unread'}`}
-                                   onClick={() => handleNotificationClick(notification)}
-                               >
-                                   <span>{notification.senderId} sent you a new message</span>
-                                   <span className="notification-time">
-                                       {moment(notification.date).fromNow()}
-                                   </span>
-                               </div>
-                           ))
-                       )}
+                       ))}
+                   </Stack>
+                   <ChatBox />
+               </Stack>
+               <PotentialChats />
+               {notifications.length > 0 && (
+                   <div className="notifications">
+                       {notifications.map((notification, index) => (
+                           <div key={index} className="notification">
+                               New message from {notification.senderId}
+                           </div>
+                       ))}
                    </div>
                )}
-           </div>
+           </Container>
        );
    };
 
-   export default Notification;
+   export default Chat;
    ```
 
 ### Step 4: Updating CSS for Notifications
 
-Finally, we need to add custom styles for the notifications to `index.css`.
+Finally, we need to add some custom styles to `index.css` to display notifications properly.
 
 3. **Update `index.css`:**
 
@@ -327,68 +306,27 @@ Finally, we need to add custom styles for the notifications to `index.css`.
    /* client/src/index.css */
 
    .notifications {
-       position: relative;
-   }
-
-   .notifications-icon {
-       cursor: pointer;
-       position: relative;
-   }
-
-   .notification-count {
-       background-color: red;
-       color: white;
-       border-radius: 50%;
-       padding: 2px 6px;
-       position: absolute;
-       top: -5px;
-       right: -10px;
-   }
-
-   .notifications-box {
-       position: absolute;
-       right: 0;
-       top: 30px;
-       background: white;
-       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-       border-radius: 5px;
-       width: 300px;
+       position: fixed;
+       top: 10px;
+       right: 10px;
+       background: #f8d7da;
+       color: #721c24;
+       padding: 10px;
+       border: 1px solid #f5c6cb;
+       border-radius: 8px;
        z-index: 1000;
    }
 
-   .notifications-header {
-       display: flex;
-       justify-content: space-between;
-       align-items: center;
-       padding: 10px;
-       border-bottom: 1px solid #eee;
-   }
-
-   .notifications-header h3 {
-       margin: 0;
-   }
-
-   .mark-as-read {
-       cursor: pointer;
-       color: blue;
-   }
-
    .notification {
+       margin-bottom: 10px;
        padding: 10px;
-       border-bottom: 1px solid #eee;
+       border-radius: 8px;
+       background: #f8d7da;
+       color: #721c24;
+       border: 1px solid #f5c6cb;
    }
-
-   .notification.unread {
-       background-color: #f8f8f8;
-   }
-
-   .notification-time {
-       display: block;
-       color: #999;
-       font-size: 12px;
-   }
-   ```
+    ```
 
 ### Conclusion
 
-In this tutorial, we implemented a notification system in our real-time chat application using Socket.IO. Users can now receive notifications for new messages even when they are not actively viewing the chat. We also added auto-scroll functionality to the chat box to improve the user experience. Stay tuned for more tutorials and enhancements to this application!
+In this tutorial, we successfully added a notification system to our chat application using Socket.IO. This allows users to receive real-time notifications for new messages, enhancing the overall user experience. In the next tutorial, we will continue to refine our application and explore more advanced features. Stay tuned for more updates and improvements!

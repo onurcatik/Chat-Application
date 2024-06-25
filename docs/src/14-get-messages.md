@@ -1,4 +1,4 @@
-# Building a Real-Time Chat Application (Part 14)
+# Real-Time Chat Application
 
 ## Displaying Chat Messages in React
 

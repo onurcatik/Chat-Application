@@ -1,10 +1,10 @@
-## Building a Real-Time Chat Application (Part 12)
+# Real-Time Chat Application
 
-### Styling and Listing User Chats in React
+## Styling and Listing User Chats in React
 
 In the previous tutorial, we set up our React application to fetch user-specific chats from the backend. Now, we will focus on styling and displaying these chats using React Bootstrap and custom CSS. We will create a user-friendly interface to list the chats and prepare for future features such as creating new chats and sending messages.
 
-### Step 1: Setting Up CSS and Bootstrap
+## Step 1: Setting Up CSS and Bootstrap
 
 To style our chat list, we will use a combination of custom CSS and Bootstrap classes. For this tutorial, I will provide the necessary CSS code, but you can download it from the link provided in the description for detailed customization.
 
@@ -50,7 +50,7 @@ To style our chat list, we will use a combination of custom CSS and Bootstrap cl
    }
    ```
 
-### Step 2: Setting Up the Chat Component
+## Step 2: Setting Up the Chat Component
 
 We will now set up our chat component to display a list of user chats. This involves fetching the chat data from the context and rendering it in a styled format.
 
@@ -96,7 +96,7 @@ We will now set up our chat component to display a list of user chats. This invo
    export default Chat;
    ```
 
-### Step 3: Creating the UserCard Component
+## Step 3: Creating the UserCard Component
 
 The `UserCard` component will display individual user chat details such as the avatar, user name, and last message. It will also include some basic styling.
 
@@ -128,7 +128,7 @@ The `UserCard` component will display individual user chat details such as the a
    export default UserCard;
    ```
 
-### Step 4: Creating a Custom Hook to Fetch Recipient Data
+## Step 4: Creating a Custom Hook to Fetch Recipient Data
 
 We need a custom hook to fetch the recipient's data for each chat. This hook will identify the recipient based on the chat's member IDs and fetch their details from the backend.
 
@@ -161,7 +161,7 @@ We need a custom hook to fetch the recipient's data for each chat. This hook wil
    };
    ```
 
-### Conclusion
+## Conclusion
 
 In this tutorial, we focused on fetching and displaying user chats in our React application. We set up custom CSS for styling, created a `UserCard` component to display chat details, and developed a custom hook to fetch recipient data. This setup will make it easier to expand the chat functionality and provide a seamless user experience.
 

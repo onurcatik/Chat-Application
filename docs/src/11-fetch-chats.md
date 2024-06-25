@@ -1,6 +1,6 @@
-## Building a Real-Time Chat Application (Part 11)
+# Real-Time Chat Application
 
-### Consuming Chat and Message APIs in React
+## Consuming Chat and Message APIs in React
 
 In the previous tutorials, we implemented the backend API endpoints for managing chats and messages. Now, we will integrate these APIs into our React frontend to enable chat functionality. This tutorial will cover the following:
 
@@ -9,7 +9,7 @@ In the previous tutorials, we implemented the backend API endpoints for managing
 3. Fetching user-specific chats from the backend.
 4. Displaying chat details on the frontend.
 
-### Setting Up Utility Functions for GET Requests
+## Setting Up Utility Functions for GET Requests
 
 First, we need to extend our utility functions to include GET requests. These functions will handle fetching data from our backend APIs.
 
@@ -34,7 +34,7 @@ First, we need to extend our utility functions to include GET requests. These fu
    };
    ```
 
-### Setting Up Chat Context
+## Setting Up Chat Context
 
 Next, we will create a new context to manage chat state within our React application. This context will handle fetching user-specific chats and storing them in state.
 
@@ -81,7 +81,7 @@ Next, we will create a new context to manage chat state within our React applica
    };
    ```
 
-### Integrating Chat Context into the Application
+## Integrating Chat Context into the Application
 
 Now that we have our chat context, we need to integrate it into our application. This involves wrapping our main app component with the `ChatContextProvider` and passing the current user as a prop.
 
@@ -106,7 +106,7 @@ Now that we have our chat context, we need to integrate it into our application.
    export default App;
    ```
 
-### Fetching and Displaying User Chats
+## Fetching and Displaying User Chats
 
 With the context set up, we can now fetch and display user-specific chats. We'll update the chat component to retrieve chats from the context and render them.
 
@@ -146,10 +146,8 @@ With the context set up, we can now fetch and display user-specific chats. We'll
    export default Chat;
    ```
 
-### Summary
+## Summary
 
 In this tutorial, we integrated our chat and message APIs into the React frontend. We created utility functions for performing GET requests, set up a context to manage chat state, and updated the chat component to fetch and display user-specific chats. This setup lays the foundation for building a robust and interactive chat application.
 
 In the next tutorial, we will further enhance the chat functionality by implementing message sending and real-time updates using Socket.IO. This will allow us to provide a seamless and responsive user experience.
-
-Stay tuned for the next part, where we will dive deeper into real-time communication in our chat application.

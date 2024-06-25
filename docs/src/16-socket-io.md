@@ -1,4 +1,4 @@
-# Building a Real-Time Chat Application (Part 16)
+# Real-Time Chat Application
 
 ## Implementing Notifications with Socket.IO
 

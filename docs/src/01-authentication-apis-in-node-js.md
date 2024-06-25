@@ -227,5 +227,3 @@ Use [Postman](https://www.postman.com/) to test the APIs:
 
 In the upcoming tutorial, we will focus on integrating the backend APIs with our React frontend using the Context API for state management. We will also design the user interface for registration, login, and real-time chat features.
 
-Stay tuned for more comprehensive tutorials that will guide you through building robust and scalable web applications.
-

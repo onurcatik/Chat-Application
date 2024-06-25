@@ -1,6 +1,6 @@
-## Building a Real-Time Chat Application (Part 10)
+# Real-Time Chat Application
 
-### Implementing Message API Endpoints
+## Implementing Message API Endpoints
 
 In the previous tutorial, we established the core API endpoints for managing chats within our application. These endpoints allow us to create a chat, list chats, and find specific chats. In this tutorial, we will develop additional API endpoints to manage messages within chats. Specifically, we will create endpoints to:
 
@@ -9,7 +9,7 @@ In the previous tutorial, we established the core API endpoints for managing cha
 
 This tutorial will cover the implementation of these endpoints using a structured and systematic approach, ensuring robust and scalable code.
 
-### Setting Up the Message Model
+## Setting Up the Message Model
 
 The first step is to define a model for our messages. This model will represent the structure of messages stored in our MongoDB database.
 
@@ -41,7 +41,7 @@ The first step is to define a model for our messages. This model will represent 
    module.exports = Message;
    ```
 
-### Creating Message Controllers
+## Creating Message Controllers
 
 Next, we need to create a controller to handle operations related to messages. This controller will manage the creation and retrieval of messages.
 
@@ -85,7 +85,7 @@ Next, we need to create a controller to handle operations related to messages. T
    };
    ```
 
-### Setting Up Message Routes
+## Setting Up Message Routes
 
 To enable the frontend to interact with our message endpoints, we need to set up routes.
 
@@ -103,7 +103,7 @@ To enable the frontend to interact with our message endpoints, we need to set up
    module.exports = router;
    ```
 
-### Integrating Message Routes into the Main Application
+## Integrating Message Routes into the Main Application
 
 We now need to integrate these new routes into our main application file to ensure they are accessible.
 
@@ -139,7 +139,7 @@ We now need to integrate these new routes into our main application file to ensu
    });
    ```
 
-### Testing the Message Endpoints
+## Testing the Message Endpoints
 
 With the routes set up, we should test the endpoints using a tool like Postman to ensure they work as expected.
 
@@ -159,10 +159,8 @@ With the routes set up, we should test the endpoints using a tool like Postman t
    - **Method:** GET
    - **URL:** `http://localhost:5000/api/messages/60d0fe4f5311236168a109ca`
 
-### Summary
+## Summary
 
 In this tutorial, we implemented the necessary backend infrastructure to manage messages within our chat application. We defined a message model, created controllers to handle message creation and retrieval, set up routes, and integrated these routes into our main application. This setup is crucial for managing message data and ensuring our chat application operates smoothly.
 
 In the next tutorial, we will integrate these message functionalities into our frontend and begin building the real-time chat interface, leveraging socket.io for real-time communication.
-
-Stay tuned for the next part, where we enhance the interactivity and responsiveness of our chat application.

@@ -1,10 +1,10 @@
-# Building a Real-Time Chat Application (Part 9)
+# Real-Time Chat Application
 
 ## Implementing User Login Functionality
 
 In the last episode, we successfully implemented user logout functionality and conditionally rendered navigation links based on the user's authentication status. In this episode, we'll add user login functionality, including making HTTP requests to our backend, updating the user state, and storing user data in local storage.
 
-### Adding Login Functionality in AuthContext
+## Adding Login Functionality in AuthContext
 
 1. **Create Login Function:**
    ```javascript
@@ -111,7 +111,7 @@ In the last episode, we successfully implemented user logout functionality and c
    };
    ```
 
-### Updating Login Component
+## Updating Login Component
 
 1. **Update Login Form to Handle State and Submit:**
    ```javascript
@@ -165,15 +165,13 @@ In the last episode, we successfully implemented user logout functionality and c
    export default Login;
    ```
 
-### Testing the Login Functionality
+## Testing the Login Functionality
 
 1. **Test Login:**
    - Start your application and try to log in with a user.
    - Verify that the user is logged in successfully and the state and local storage are updated accordingly.
    - Check for error handling by entering incorrect credentials.
 
-### Summary
+## Summary
 
 In this episode, we implemented the user login functionality by creating a `loginUser` function in the `AuthContext` and updating the `Login` component to handle state and form submission. This allows users to log in, updating the application state and local storage. In the next episode, we'll continue building our real-time chat application by creating APIs for managing messages.
-
-Stay tuned for more detailed tutorials on building a robust real-time chat application.

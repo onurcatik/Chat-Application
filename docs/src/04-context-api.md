@@ -230,5 +230,3 @@ The Context API allows us to share data globally across our application without 
 ### Summary
 
 In this episode, we integrated Context API to manage the state of our registration form. We used Axios to make an HTTP request to register a user. In the next episode, we will handle user login and authentication, manage the authentication state, and protect certain routes to ensure only authenticated users can access them.
-
-Stay tuned for more detailed tutorials on building a robust real-time chat application.

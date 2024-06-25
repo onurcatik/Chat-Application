@@ -1,4 +1,4 @@
-# Real-Time Chat Application (Part 3)
+# Real-Time Chat Application
 
 ## Setting Up React Router and Initial Pages
 
@@ -172,5 +172,3 @@ npm install react-router-dom
 ### Next Steps
 
 In the next episode, we will work on creating forms for user registration and login using Bootstrap. We will also handle the logic for submitting these forms and integrating them with our backend APIs.
-
-Stay tuned for more detailed tutorials on building a robust real-time chat application.

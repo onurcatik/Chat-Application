@@ -1,10 +1,10 @@
-## Building a Real-Time Chat Application (Part 13)
+# Real-Time Chat Application
 
-### Creating and Listing User Chats in React
+## Creating and Listing User Chats in React
 
 In this part of the tutorial, we will focus on the ability to create a new chat when clicking on a user from the list of potential chats. This functionality will involve updating the chat context and making a POST request to our backend API to create the chat. Let's dive into the details.
 
-### Step 1: Updating Chat Context for Potential Chats
+## Step 1: Updating Chat Context for Potential Chats
 
 We need to update our chat context to include functionality for handling potential chats. This includes fetching all users and filtering them to exclude the currently logged-in user and users with whom we already have a chat.
 
@@ -86,7 +86,7 @@ We need to update our chat context to include functionality for handling potenti
    };
    ```
 
-### Step 2: Creating the Potential Chats Component
+## Step 2: Creating the Potential Chats Component
 
 We need a component to list potential users for starting new chats. This component will use the `ChatContext` to fetch and display potential chat users.
 
@@ -121,7 +121,7 @@ We need a component to list potential users for starting new chats. This compone
    export default PotentialChats;
    ```
 
-### Step 3: Integrating Potential Chats into the Main Chat Component
+## Step 3: Integrating Potential Chats into the Main Chat Component
 
 Finally, we need to integrate the `PotentialChats` component into our main chat page so that it displays alongside the existing chats.
 
@@ -164,7 +164,7 @@ Finally, we need to integrate the `PotentialChats` component into our main chat 
    export default Chat;
    ```
 
-### Conclusion
+## Conclusion
 
 In this tutorial, we enhanced our chat application by implementing the ability to create new chats with users who are not already in the chat list. We added the necessary state management and API calls to handle fetching users, filtering out the current user and already existing chat users, and creating new chats.
 

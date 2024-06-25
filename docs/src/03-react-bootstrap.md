@@ -183,5 +183,3 @@ In this tutorial, we will focus on creating the user interface for our chat appl
 ### Next Steps
 
 In the next episode, we will cover using the Context API to manage the state of our application. This will include handling form state, making HTTP requests to register and log in users, and managing user authentication state throughout the application.
-
-Stay tuned for more detailed tutorials on building a robust real-time chat application.

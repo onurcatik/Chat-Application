@@ -165,5 +165,3 @@ In the previous episode, we integrated Context API to manage the state of our fo
 ### Summary
 
 In this episode, we successfully created utility functions to handle HTTP requests, updated our AuthContext to include registration logic, and utilized the Context API in our Register component to handle form submissions. In the next episode, we will implement user login, manage authentication state, and protect certain routes to ensure only authenticated users can access them.
-
-Stay tuned for more detailed tutorials on building a robust real-time chat application.

@@ -1,10 +1,10 @@
-# Building a Real-Time Chat Application (Part 10)
+# Real-Time Chat Application
 
 ## Creating Chat API Endpoints
 
 In the last episode, we set up our chat model and created the necessary API endpoints to manage chat functionality, including creating a chat, getting user chats, and finding a specific chat. In this episode, we will create API endpoints to manage messages within our chat application. This includes creating messages and retrieving messages for specific chats.
 
-### Setting Up the Message Model
+## Setting Up the Message Model
 
 First, let's create a model for our messages.
 
@@ -35,7 +35,7 @@ First, let's create a model for our messages.
    module.exports = Message;
    ```
 
-### Creating Message Controllers
+## Creating Message Controllers
 
 Next, let's create a controller to handle message-related operations.
 
@@ -78,7 +78,7 @@ Next, let's create a controller to handle message-related operations.
    };
    ```
 
-### Setting Up Message Routes
+## Setting Up Message Routes
 
 Now, we need to create routes to handle incoming requests for creating and retrieving messages.
 
@@ -94,7 +94,7 @@ Now, we need to create routes to handle incoming requests for creating and retri
    module.exports = router;
    ```
 
-### Integrating Message Routes into the Application
+## Integrating Message Routes into the Application
 
 Finally, let's integrate these routes into our main application.
 
@@ -129,7 +129,7 @@ Finally, let's integrate these routes into our main application.
    });
    ```
 
-### Testing the Message Endpoints
+## Testing the Message Endpoints
 
 Now that we have set up our message model, controller, and routes, let's test the endpoints using Postman.
 
@@ -142,8 +142,6 @@ Now that we have set up our message model, controller, and routes, let's test th
    - Create a new GET request to `http://localhost:5000/api/messages/{chatId}` (replace `{chatId}` with a valid chat ID).
    - Click `Send` to retrieve all messages for the specified chat.
 
-### Summary
+## Summary
 
 In this episode, we created the necessary API endpoints to manage messages within our chat application. We set up a message model, created controllers to handle message creation and retrieval, and integrated these routes into our main application. In the next episode, we will integrate these message functionalities into our frontend and begin building the real-time chat interface.
-
-Stay tuned for more detailed tutorials on building a robust real-time chat application.

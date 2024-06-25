@@ -325,17 +325,4 @@ io.on('connection', (socket) => {
    };
 
    export default Chat;
-  
-
- ```
-
-## Conclusion
-
-In this tutorial, we have created a basic real-time chat application with user authentication and real-time messaging using React, Node.js, and Socket.IO. This project serves as a foundation for more advanced features and optimizations, such as handling more complex user states, implementing message persistence with a database, and enhancing the user interface with additional functionalities.
-
-### Future Enhancements
-- **Message Persistence:** Integrate a database (e.g., MongoDB) to store messages.
-- **User Profiles:** Allow users to update their profiles and view other users' profiles.
-- **Advanced Notifications:** Implement push notifications for messages when the user is offline.
-
-By following this guide, you have gained insights into building real-time web applications and can now extend the functionality as needed for your projects.
+   ```

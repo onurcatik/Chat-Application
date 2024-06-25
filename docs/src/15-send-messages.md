@@ -1,4 +1,4 @@
-# Building a Real-Time Chat Application (Part 15)
+# Real-Time Chat Application
 
 ## Integrating Socket.IO for Real-Time Messaging
 
@@ -333,7 +333,7 @@ We need to create the `ChatBox` component to handle sending and receiving messag
    };
 
    export default ChatBox;
-   ```
+    ```
 
 ### Step 5: Updating CSS for ChatBox
 
