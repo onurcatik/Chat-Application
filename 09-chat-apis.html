@@ -173,10 +173,10 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="building-a-real-time-chat-application-part-10"><a class="header" href="#building-a-real-time-chat-application-part-10">Building a Real-Time Chat Application (Part 10)</a></h1>
+                        <h1 id="real-time-chat-application"><a class="header" href="#real-time-chat-application">Real-Time Chat Application</a></h1>
 <h2 id="creating-chat-api-endpoints"><a class="header" href="#creating-chat-api-endpoints">Creating Chat API Endpoints</a></h2>
 <p>In the last episode, we set up our chat model and created the necessary API endpoints to manage chat functionality, including creating a chat, getting user chats, and finding a specific chat. In this episode, we will create API endpoints to manage messages within our chat application. This includes creating messages and retrieving messages for specific chats.</p>
-<h3 id="setting-up-the-message-model"><a class="header" href="#setting-up-the-message-model">Setting Up the Message Model</a></h3>
+<h2 id="setting-up-the-message-model"><a class="header" href="#setting-up-the-message-model">Setting Up the Message Model</a></h2>
 <p>First, let's create a model for our messages.</p>
 <ol>
 <li><strong>Create Message Model:</strong>
@@ -206,7 +206,7 @@ module.exports = Message;
 </code></pre>
 </li>
 </ol>
-<h3 id="creating-message-controllers"><a class="header" href="#creating-message-controllers">Creating Message Controllers</a></h3>
+<h2 id="creating-message-controllers"><a class="header" href="#creating-message-controllers">Creating Message Controllers</a></h2>
 <p>Next, let's create a controller to handle message-related operations.</p>
 <ol start="2">
 <li><strong>Create Message Controller:</strong>
@@ -248,7 +248,7 @@ module.exports = {
 </code></pre>
 </li>
 </ol>
-<h3 id="setting-up-message-routes"><a class="header" href="#setting-up-message-routes">Setting Up Message Routes</a></h3>
+<h2 id="setting-up-message-routes"><a class="header" href="#setting-up-message-routes">Setting Up Message Routes</a></h2>
 <p>Now, we need to create routes to handle incoming requests for creating and retrieving messages.</p>
 <ol start="3">
 <li><strong>Create Message Routes:</strong>
@@ -263,7 +263,7 @@ module.exports = router;
 </code></pre>
 </li>
 </ol>
-<h3 id="integrating-message-routes-into-the-application"><a class="header" href="#integrating-message-routes-into-the-application">Integrating Message Routes into the Application</a></h3>
+<h2 id="integrating-message-routes-into-the-application"><a class="header" href="#integrating-message-routes-into-the-application">Integrating Message Routes into the Application</a></h2>
 <p>Finally, let's integrate these routes into our main application.</p>
 <ol start="4">
 <li><strong>Update Main Application:</strong>
@@ -297,7 +297,7 @@ app.listen(PORT, () =&gt; {
 </code></pre>
 </li>
 </ol>
-<h3 id="testing-the-message-endpoints"><a class="header" href="#testing-the-message-endpoints">Testing the Message Endpoints</a></h3>
+<h2 id="testing-the-message-endpoints"><a class="header" href="#testing-the-message-endpoints">Testing the Message Endpoints</a></h2>
 <p>Now that we have set up our message model, controller, and routes, let's test the endpoints using Postman.</p>
 <ol>
 <li>
@@ -316,9 +316,8 @@ app.listen(PORT, () =&gt; {
 </ul>
 </li>
 </ol>
-<h3 id="summary"><a class="header" href="#summary">Summary</a></h3>
+<h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
 <p>In this episode, we created the necessary API endpoints to manage messages within our chat application. We set up a message model, created controllers to handle message creation and retrieval, and integrated these routes into our main application. In the next episode, we will integrate these message functionalities into our frontend and begin building the real-time chat interface.</p>
-<p>Stay tuned for more detailed tutorials on building a robust real-time chat application.</p>
 
                     </main>
 

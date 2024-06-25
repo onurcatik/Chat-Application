@@ -173,10 +173,10 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="building-a-real-time-chat-application-part-12"><a class="header" href="#building-a-real-time-chat-application-part-12">Building a Real-Time Chat Application (Part 12)</a></h2>
-<h3 id="styling-and-listing-user-chats-in-react"><a class="header" href="#styling-and-listing-user-chats-in-react">Styling and Listing User Chats in React</a></h3>
+                        <h1 id="real-time-chat-application"><a class="header" href="#real-time-chat-application">Real-Time Chat Application</a></h1>
+<h2 id="styling-and-listing-user-chats-in-react"><a class="header" href="#styling-and-listing-user-chats-in-react">Styling and Listing User Chats in React</a></h2>
 <p>In the previous tutorial, we set up our React application to fetch user-specific chats from the backend. Now, we will focus on styling and displaying these chats using React Bootstrap and custom CSS. We will create a user-friendly interface to list the chats and prepare for future features such as creating new chats and sending messages.</p>
-<h3 id="step-1-setting-up-css-and-bootstrap"><a class="header" href="#step-1-setting-up-css-and-bootstrap">Step 1: Setting Up CSS and Bootstrap</a></h3>
+<h2 id="step-1-setting-up-css-and-bootstrap"><a class="header" href="#step-1-setting-up-css-and-bootstrap">Step 1: Setting Up CSS and Bootstrap</a></h2>
 <p>To style our chat list, we will use a combination of custom CSS and Bootstrap classes. For this tutorial, I will provide the necessary CSS code, but you can download it from the link provided in the description for detailed customization.</p>
 <ol>
 <li>
@@ -220,7 +220,7 @@ body {
 </code></pre>
 </li>
 </ol>
-<h3 id="step-2-setting-up-the-chat-component"><a class="header" href="#step-2-setting-up-the-chat-component">Step 2: Setting Up the Chat Component</a></h3>
+<h2 id="step-2-setting-up-the-chat-component"><a class="header" href="#step-2-setting-up-the-chat-component">Step 2: Setting Up the Chat Component</a></h2>
 <p>We will now set up our chat component to display a list of user chats. This involves fetching the chat data from the context and rendering it in a styled format.</p>
 <ol start="2">
 <li>
@@ -265,7 +265,7 @@ export default Chat;
 </code></pre>
 </li>
 </ol>
-<h3 id="step-3-creating-the-usercard-component"><a class="header" href="#step-3-creating-the-usercard-component">Step 3: Creating the UserCard Component</a></h3>
+<h2 id="step-3-creating-the-usercard-component"><a class="header" href="#step-3-creating-the-usercard-component">Step 3: Creating the UserCard Component</a></h2>
 <p>The <code>UserCard</code> component will display individual user chat details such as the avatar, user name, and last message. It will also include some basic styling.</p>
 <ol start="3">
 <li>
@@ -296,7 +296,7 @@ export default UserCard;
 </code></pre>
 </li>
 </ol>
-<h3 id="step-4-creating-a-custom-hook-to-fetch-recipient-data"><a class="header" href="#step-4-creating-a-custom-hook-to-fetch-recipient-data">Step 4: Creating a Custom Hook to Fetch Recipient Data</a></h3>
+<h2 id="step-4-creating-a-custom-hook-to-fetch-recipient-data"><a class="header" href="#step-4-creating-a-custom-hook-to-fetch-recipient-data">Step 4: Creating a Custom Hook to Fetch Recipient Data</a></h2>
 <p>We need a custom hook to fetch the recipient's data for each chat. This hook will identify the recipient based on the chat's member IDs and fetch their details from the backend.</p>
 <ol start="4">
 <li>
@@ -328,7 +328,7 @@ export const useFetchRecipient = (chat, user) =&gt; {
 </code></pre>
 </li>
 </ol>
-<h3 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h3>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
 <p>In this tutorial, we focused on fetching and displaying user chats in our React application. We set up custom CSS for styling, created a <code>UserCard</code> component to display chat details, and developed a custom hook to fetch recipient data. This setup will make it easier to expand the chat functionality and provide a seamless user experience.</p>
 <p>In the next tutorial, we will add the functionality to create new chats and handle chat messages. This will involve updating our backend APIs and enhancing the frontend to support real-time messaging with Socket.IO. Stay tuned for more advanced features and improvements in our chat application.</p>
 

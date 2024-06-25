@@ -173,8 +173,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="building-a-real-time-chat-application-part-11"><a class="header" href="#building-a-real-time-chat-application-part-11">Building a Real-Time Chat Application (Part 11)</a></h2>
-<h3 id="consuming-chat-and-message-apis-in-react"><a class="header" href="#consuming-chat-and-message-apis-in-react">Consuming Chat and Message APIs in React</a></h3>
+                        <h1 id="real-time-chat-application"><a class="header" href="#real-time-chat-application">Real-Time Chat Application</a></h1>
+<h2 id="consuming-chat-and-message-apis-in-react"><a class="header" href="#consuming-chat-and-message-apis-in-react">Consuming Chat and Message APIs in React</a></h2>
 <p>In the previous tutorials, we implemented the backend API endpoints for managing chats and messages. Now, we will integrate these APIs into our React frontend to enable chat functionality. This tutorial will cover the following:</p>
 <ol>
 <li>Creating utility functions to perform GET requests.</li>
@@ -182,7 +182,7 @@
 <li>Fetching user-specific chats from the backend.</li>
 <li>Displaying chat details on the frontend.</li>
 </ol>
-<h3 id="setting-up-utility-functions-for-get-requests"><a class="header" href="#setting-up-utility-functions-for-get-requests">Setting Up Utility Functions for GET Requests</a></h3>
+<h2 id="setting-up-utility-functions-for-get-requests"><a class="header" href="#setting-up-utility-functions-for-get-requests">Setting Up Utility Functions for GET Requests</a></h2>
 <p>First, we need to extend our utility functions to include GET requests. These functions will handle fetching data from our backend APIs.</p>
 <ol>
 <li>
@@ -206,7 +206,7 @@ export const getRequest = async (url) =&gt; {
 </code></pre>
 </li>
 </ol>
-<h3 id="setting-up-chat-context"><a class="header" href="#setting-up-chat-context">Setting Up Chat Context</a></h3>
+<h2 id="setting-up-chat-context"><a class="header" href="#setting-up-chat-context">Setting Up Chat Context</a></h2>
 <p>Next, we will create a new context to manage chat state within our React application. This context will handle fetching user-specific chats and storing them in state.</p>
 <ol start="2">
 <li>
@@ -252,7 +252,7 @@ export const ChatContextProvider = ({ children, user }) =&gt; {
 </code></pre>
 </li>
 </ol>
-<h3 id="integrating-chat-context-into-the-application"><a class="header" href="#integrating-chat-context-into-the-application">Integrating Chat Context into the Application</a></h3>
+<h2 id="integrating-chat-context-into-the-application"><a class="header" href="#integrating-chat-context-into-the-application">Integrating Chat Context into the Application</a></h2>
 <p>Now that we have our chat context, we need to integrate it into our application. This involves wrapping our main app component with the <code>ChatContextProvider</code> and passing the current user as a prop.</p>
 <ol start="3">
 <li>
@@ -276,7 +276,7 @@ export default App;
 </code></pre>
 </li>
 </ol>
-<h3 id="fetching-and-displaying-user-chats"><a class="header" href="#fetching-and-displaying-user-chats">Fetching and Displaying User Chats</a></h3>
+<h2 id="fetching-and-displaying-user-chats"><a class="header" href="#fetching-and-displaying-user-chats">Fetching and Displaying User Chats</a></h2>
 <p>With the context set up, we can now fetch and display user-specific chats. We'll update the chat component to retrieve chats from the context and render them.</p>
 <ol start="4">
 <li>
@@ -315,10 +315,9 @@ export default Chat;
 </code></pre>
 </li>
 </ol>
-<h3 id="summary"><a class="header" href="#summary">Summary</a></h3>
+<h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
 <p>In this tutorial, we integrated our chat and message APIs into the React frontend. We created utility functions for performing GET requests, set up a context to manage chat state, and updated the chat component to fetch and display user-specific chats. This setup lays the foundation for building a robust and interactive chat application.</p>
 <p>In the next tutorial, we will further enhance the chat functionality by implementing message sending and real-time updates using Socket.IO. This will allow us to provide a seamless and responsive user experience.</p>
-<p>Stay tuned for the next part, where we will dive deeper into real-time communication in our chat application.</p>
 
                     </main>
 

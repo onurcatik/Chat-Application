@@ -173,10 +173,10 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="building-a-real-time-chat-application-part-9"><a class="header" href="#building-a-real-time-chat-application-part-9">Building a Real-Time Chat Application (Part 9)</a></h1>
+                        <h1 id="real-time-chat-application"><a class="header" href="#real-time-chat-application">Real-Time Chat Application</a></h1>
 <h2 id="implementing-user-login-functionality"><a class="header" href="#implementing-user-login-functionality">Implementing User Login Functionality</a></h2>
 <p>In the last episode, we successfully implemented user logout functionality and conditionally rendered navigation links based on the user's authentication status. In this episode, we'll add user login functionality, including making HTTP requests to our backend, updating the user state, and storing user data in local storage.</p>
-<h3 id="adding-login-functionality-in-authcontext"><a class="header" href="#adding-login-functionality-in-authcontext">Adding Login Functionality in AuthContext</a></h3>
+<h2 id="adding-login-functionality-in-authcontext"><a class="header" href="#adding-login-functionality-in-authcontext">Adding Login Functionality in AuthContext</a></h2>
 <ol>
 <li><strong>Create Login Function:</strong>
 <pre><code class="language-javascript">// src/context/AuthContext.jsx
@@ -283,7 +283,7 @@ export const AuthContextProvider = ({ children }) =&gt; {
 </code></pre>
 </li>
 </ol>
-<h3 id="updating-login-component"><a class="header" href="#updating-login-component">Updating Login Component</a></h3>
+<h2 id="updating-login-component"><a class="header" href="#updating-login-component">Updating Login Component</a></h2>
 <ol>
 <li><strong>Update Login Form to Handle State and Submit:</strong>
 <pre><code class="language-javascript">// src/pages/Login.jsx
@@ -337,7 +337,7 @@ export default Login;
 </code></pre>
 </li>
 </ol>
-<h3 id="testing-the-login-functionality"><a class="header" href="#testing-the-login-functionality">Testing the Login Functionality</a></h3>
+<h2 id="testing-the-login-functionality"><a class="header" href="#testing-the-login-functionality">Testing the Login Functionality</a></h2>
 <ol>
 <li><strong>Test Login:</strong>
 <ul>
@@ -347,9 +347,8 @@ export default Login;
 </ul>
 </li>
 </ol>
-<h3 id="summary"><a class="header" href="#summary">Summary</a></h3>
+<h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
 <p>In this episode, we implemented the user login functionality by creating a <code>loginUser</code> function in the <code>AuthContext</code> and updating the <code>Login</code> component to handle state and form submission. This allows users to log in, updating the application state and local storage. In the next episode, we'll continue building our real-time chat application by creating APIs for managing messages.</p>
-<p>Stay tuned for more detailed tutorials on building a robust real-time chat application.</p>
 
                     </main>
 

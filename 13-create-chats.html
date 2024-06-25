@@ -173,10 +173,10 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="building-a-real-time-chat-application-part-13"><a class="header" href="#building-a-real-time-chat-application-part-13">Building a Real-Time Chat Application (Part 13)</a></h2>
-<h3 id="creating-and-listing-user-chats-in-react"><a class="header" href="#creating-and-listing-user-chats-in-react">Creating and Listing User Chats in React</a></h3>
+                        <h1 id="real-time-chat-application"><a class="header" href="#real-time-chat-application">Real-Time Chat Application</a></h1>
+<h2 id="creating-and-listing-user-chats-in-react"><a class="header" href="#creating-and-listing-user-chats-in-react">Creating and Listing User Chats in React</a></h2>
 <p>In this part of the tutorial, we will focus on the ability to create a new chat when clicking on a user from the list of potential chats. This functionality will involve updating the chat context and making a POST request to our backend API to create the chat. Let's dive into the details.</p>
-<h3 id="step-1-updating-chat-context-for-potential-chats"><a class="header" href="#step-1-updating-chat-context-for-potential-chats">Step 1: Updating Chat Context for Potential Chats</a></h3>
+<h2 id="step-1-updating-chat-context-for-potential-chats"><a class="header" href="#step-1-updating-chat-context-for-potential-chats">Step 1: Updating Chat Context for Potential Chats</a></h2>
 <p>We need to update our chat context to include functionality for handling potential chats. This includes fetching all users and filtering them to exclude the currently logged-in user and users with whom we already have a chat.</p>
 <ol>
 <li>
@@ -257,7 +257,7 @@ export const ChatContextProvider = ({ children, user }) =&gt; {
 </code></pre>
 </li>
 </ol>
-<h3 id="step-2-creating-the-potential-chats-component"><a class="header" href="#step-2-creating-the-potential-chats-component">Step 2: Creating the Potential Chats Component</a></h3>
+<h2 id="step-2-creating-the-potential-chats-component"><a class="header" href="#step-2-creating-the-potential-chats-component">Step 2: Creating the Potential Chats Component</a></h2>
 <p>We need a component to list potential users for starting new chats. This component will use the <code>ChatContext</code> to fetch and display potential chat users.</p>
 <ol start="2">
 <li>
@@ -291,7 +291,7 @@ export default PotentialChats;
 </code></pre>
 </li>
 </ol>
-<h3 id="step-3-integrating-potential-chats-into-the-main-chat-component"><a class="header" href="#step-3-integrating-potential-chats-into-the-main-chat-component">Step 3: Integrating Potential Chats into the Main Chat Component</a></h3>
+<h2 id="step-3-integrating-potential-chats-into-the-main-chat-component"><a class="header" href="#step-3-integrating-potential-chats-into-the-main-chat-component">Step 3: Integrating Potential Chats into the Main Chat Component</a></h2>
 <p>Finally, we need to integrate the <code>PotentialChats</code> component into our main chat page so that it displays alongside the existing chats.</p>
 <ol start="3">
 <li>
@@ -333,7 +333,7 @@ export default Chat;
 </code></pre>
 </li>
 </ol>
-<h3 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h3>
+<h2 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h2>
 <p>In this tutorial, we enhanced our chat application by implementing the ability to create new chats with users who are not already in the chat list. We added the necessary state management and API calls to handle fetching users, filtering out the current user and already existing chat users, and creating new chats.</p>
 <p>Next, we will focus on fetching messages for a selected chat and displaying them in the chat box. This will further enhance the real-time communication capabilities of our application. Stay tuned for more updates and features in our chat application.</p>
 
