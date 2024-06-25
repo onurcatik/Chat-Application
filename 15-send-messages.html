@@ -1,0 +1,626 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Send Messages - Documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="00-introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="01-authentication-apis-in-node-js.html"><strong aria-hidden="true">2.</strong> Authentication APIs in Node.js</a></li><li class="chapter-item expanded "><a href="02-react-router-dom-v6.html"><strong aria-hidden="true">3.</strong> react-router-dom v6</a></li><li class="chapter-item expanded "><a href="03-react-bootstrap.html"><strong aria-hidden="true">4.</strong> React Bootstrap</a></li><li class="chapter-item expanded "><a href="04-context-api.html"><strong aria-hidden="true">5.</strong> Context API</a></li><li class="chapter-item expanded "><a href="05-register-user.html"><strong aria-hidden="true">6.</strong> Register User</a></li><li class="chapter-item expanded "><a href="06-protecting-routes.html"><strong aria-hidden="true">7.</strong> Protecting Routes</a></li><li class="chapter-item expanded "><a href="07-logout-user.html"><strong aria-hidden="true">8.</strong> Logout User</a></li><li class="chapter-item expanded "><a href="08-login-user.html"><strong aria-hidden="true">9.</strong> Login User</a></li><li class="chapter-item expanded "><a href="09-chat-apis.html"><strong aria-hidden="true">10.</strong> Chat APIs</a></li><li class="chapter-item expanded "><a href="10-messages-apis.html"><strong aria-hidden="true">11.</strong> Messages APIs</a></li><li class="chapter-item expanded "><a href="11-fetch-chats.html"><strong aria-hidden="true">12.</strong> Fetch Chats</a></li><li class="chapter-item expanded "><a href="12-list-chats.html"><strong aria-hidden="true">13.</strong> List Chats</a></li><li class="chapter-item expanded "><a href="13-create-chats.html"><strong aria-hidden="true">14.</strong> Create Chats</a></li><li class="chapter-item expanded "><a href="14-get-messages.html"><strong aria-hidden="true">15.</strong> Get Messages</a></li><li class="chapter-item expanded "><a href="15-send-messages.html" class="active"><strong aria-hidden="true">16.</strong> Send Messages</a></li><li class="chapter-item expanded "><a href="16-socket-io.html"><strong aria-hidden="true">17.</strong> socket.io</a></li><li class="chapter-item expanded "><a href="17-notifications.html"><strong aria-hidden="true">18.</strong> Notifications</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="building-a-real-time-chat-application-part-15"><a class="header" href="#building-a-real-time-chat-application-part-15">Building a Real-Time Chat Application (Part 15)</a></h1>
+<h2 id="integrating-socketio-for-real-time-messaging"><a class="header" href="#integrating-socketio-for-real-time-messaging">Integrating Socket.IO for Real-Time Messaging</a></h2>
+<p>In this tutorial, we will integrate Socket.IO to enable real-time messaging and notifications in our chat application. We will set up Socket.IO on both the server and client sides to allow bi-directional communication between them.</p>
+<h3 id="step-1-setting-up-socketio-on-the-server"><a class="header" href="#step-1-setting-up-socketio-on-the-server">Step 1: Setting Up Socket.IO on the Server</a></h3>
+<p>First, we need to set up the Socket.IO server. We will start by installing Socket.IO and then create a basic server that listens for connections and emits events.</p>
+<ol>
+<li>
+<p><strong>Install Socket.IO:</strong></p>
+<pre><code class="language-bash">npm install socket.io
+</code></pre>
+</li>
+<li>
+<p><strong>Create the Socket.IO Server:</strong></p>
+<pre><code class="language-javascript">// server/index.js
+const { Server } = require("socket.io");
+const io = new Server(3000, {
+    cors: {
+        origin: "http://localhost:3000", // Replace with your client URL
+    },
+});
+
+let onlineUsers = [];
+
+io.on("connection", (socket) =&gt; {
+    console.log("New connection:", socket.id);
+
+    socket.on("addUser", (userId) =&gt; {
+        if (!onlineUsers.some((user) =&gt; user.userId === userId)) {
+            onlineUsers.push({ userId, socketId: socket.id });
+        }
+        io.emit("getUsers", onlineUsers);
+    });
+
+    socket.on("sendMessage", ({ senderId, receiverId, text }) =&gt; {
+        const user = onlineUsers.find((user) =&gt; user.userId === receiverId);
+        if (user) {
+            io.to(user.socketId).emit("getMessage", {
+                senderId,
+                text,
+            });
+        }
+    });
+
+    socket.on("disconnect", () =&gt; {
+        onlineUsers = onlineUsers.filter((user) =&gt; user.socketId !== socket.id);
+        io.emit("getUsers", onlineUsers);
+    });
+});
+
+console.log("Socket.IO server running on port 3000");
+</code></pre>
+</li>
+</ol>
+<h3 id="step-2-setting-up-socketio-on-the-client"><a class="header" href="#step-2-setting-up-socketio-on-the-client">Step 2: Setting Up Socket.IO on the Client</a></h3>
+<p>Next, we need to set up Socket.IO on the client side to connect to the server and handle events.</p>
+<ol>
+<li>
+<p><strong>Install Socket.IO Client:</strong></p>
+<pre><code class="language-bash">npm install socket.io-client
+</code></pre>
+</li>
+<li>
+<p><strong>Update Chat Context to Handle Socket.IO:</strong></p>
+<pre><code class="language-javascript">// client/src/context/ChatContext.jsx
+import React, { createContext, useState, useEffect, useCallback } from 'react';
+import { getRequest, postRequest } from '../services';
+import { baseURL } from '../services';
+import { io } from 'socket.io-client';
+
+export const ChatContext = createContext();
+
+export const ChatContextProvider = ({ children, user }) =&gt; {
+    const [userChats, setUserChats] = useState(null);
+    const [isUserChatsLoading, setIsUserChatsLoading] = useState(false);
+    const [userChatsError, setUserChatsError] = useState(null);
+    const [potentialChats, setPotentialChats] = useState([]);
+    const [currentChat, setCurrentChat] = useState(null);
+    const [messages, setMessages] = useState([]);
+    const [isMessagesLoading, setIsMessagesLoading] = useState(false);
+    const [messagesError, setMessagesError] = useState(null);
+    const [socket, setSocket] = useState(null);
+    const [onlineUsers, setOnlineUsers] = useState([]);
+
+    useEffect(() =&gt; {
+        const newSocket = io("http://localhost:3000");
+        setSocket(newSocket);
+
+        return () =&gt; newSocket.close();
+    }, []);
+
+    useEffect(() =&gt; {
+        if (socket &amp;&amp; user) {
+            socket.emit("addUser", user._id);
+            socket.on("getUsers", (users) =&gt; {
+                setOnlineUsers(users);
+            });
+
+            socket.on("getMessage", (data) =&gt; {
+                if (currentChat?.members.includes(data.senderId)) {
+                    setMessages((prev) =&gt; [...prev, { senderId: data.senderId, text: data.text }]);
+                }
+            });
+        }
+    }, [socket, user, currentChat]);
+
+    useEffect(() =&gt; {
+        const getUserChats = async () =&gt; {
+            if (!user || !user._id) return;
+            setIsUserChatsLoading(true);
+            setUserChatsError(null);
+
+            const response = await getRequest(`${baseURL}/chats/${user._id}`);
+            if (response.error) {
+                setUserChatsError(response);
+            } else {
+                setUserChats(response);
+            }
+            setIsUserChatsLoading(false);
+        };
+        getUserChats();
+    }, [user]);
+
+    useEffect(() =&gt; {
+        const getUsers = async () =&gt; {
+            const response = await getRequest(`${baseURL}/users`);
+            if (response.error) {
+                console.error(response.error);
+                return;
+            }
+
+            const pChats = response.filter((u) =&gt; {
+                if (u._id === user._id) return false;
+                if (userChats?.some((chat) =&gt;
+                    chat.members.includes(u._id))) return false;
+                return true;
+            });
+
+            setPotentialChats(pChats);
+        };
+
+        if (userChats) {
+            getUsers();
+        }
+    }, [userChats]);
+
+    const createChat = useCallback(async (firstId, secondId) =&gt; {
+        const response = await postRequest(`${baseURL}/chats`, {
+            firstId,
+            secondId,
+        });
+
+        if (!response.error) {
+            setUserChats((prev) =&gt; [...prev, response]);
+            setPotentialChats((prev) =&gt;
+                prev.filter((u) =&gt; u._id !== secondId)
+            );
+        }
+    }, []);
+
+    const updateCurrentChat = useCallback((chat) =&gt; {
+        setCurrentChat(chat);
+    }, []);
+
+    const sendMessage = useCallback(async (chatId, senderId, text) =&gt; {
+        const response = await postRequest(`${baseURL}/messages`, {
+            chatId,
+            senderId,
+            text,
+        });
+
+        if (!response.error) {
+            setMessages((prev) =&gt; [...prev, response]);
+            socket.emit("sendMessage", {
+                senderId,
+                receiverId: currentChat.members.find((id) =&gt; id !== senderId),
+                text,
+            });
+        }
+    }, [currentChat, socket]);
+
+    return (
+        &lt;ChatContext.Provider value={{
+            userChats,
+            isUserChatsLoading,
+            userChatsError,
+            potentialChats,
+            createChat,
+            updateCurrentChat,
+            currentChat,
+            messages,
+            isMessagesLoading,
+            messagesError,
+            sendMessage,
+            onlineUsers,
+        }}&gt;
+            {children}
+        &lt;/ChatContext.Provider&gt;
+    );
+};
+</code></pre>
+</li>
+</ol>
+<h3 id="step-3-updating-the-chat-component"><a class="header" href="#step-3-updating-the-chat-component">Step 3: Updating the Chat Component</a></h3>
+<p>We need to update the main chat component to handle sending and receiving messages in real-time.</p>
+<ol start="3">
+<li>
+<p><strong>Update Chat Component:</strong></p>
+<pre><code class="language-javascript">// client/src/pages/Chat.jsx
+import React, { useContext } from 'react';
+import { Container, Stack } from 'react-bootstrap';
+import { ChatContext } from '../context/ChatContext';
+import UserCard from '../components/Chat/UserCard';
+import PotentialChats from '../components/Chat/PotentialChats';
+import ChatBox from '../components/Chat/ChatBox';
+
+const Chat = () =&gt; {
+    const { userChats, isUserChatsLoading, userChatsError, updateCurrentChat } = useContext(ChatContext);
+
+    if (isUserChatsLoading) {
+        return &lt;p&gt;Loading chats...&lt;/p&gt;;
+    }
+
+    if (userChatsError) {
+        return &lt;p&gt;Error loading chats: {userChatsError.message}&lt;/p&gt;;
+    }
+
+    return (
+        &lt;Container&gt;
+            &lt;Stack direction="horizontal" gap={4}&gt;
+                &lt;Stack gap={3} className="user-chat-list"&gt;
+                    {userChats?.map((chat, index) =&gt; (
+                        &lt;div key={index} onClick={() =&gt; updateCurrentChat(chat)}&gt;
+                            &lt;UserCard chat={chat} /&gt;
+                        &lt;/div&gt;
+                    ))}
+                &lt;/Stack&gt;
+                &lt;ChatBox /&gt;
+            &lt;/Stack&gt;
+            &lt;PotentialChats /&gt;
+        &lt;/Container&gt;
+    );
+};
+
+export default Chat;
+</code></pre>
+</li>
+</ol>
+<h3 id="step-4-creating-the-chatbox-component"><a class="header" href="#step-4-creating-the-chatbox-component">Step 4: Creating the ChatBox Component</a></h3>
+<p>We need to create the <code>ChatBox</code> component to handle sending and receiving messages in real-time.</p>
+<ol start="4">
+<li>
+<p><strong>ChatBox Component:</strong></p>
+<pre><code class="language-javascript">// client/src/components/Chat/ChatBox.jsx
+import React, { useContext, useState } from 'react';
+import { Stack } from 'react-bootstrap';
+import { ChatContext } from '../../context/ChatContext';
+import { AuthContext } from '../../context/AuthContext';
+import useFetchRecipient from '../../hooks/useFetchRecipient';
+import moment from 'moment';
+
+const ChatBox = () =&gt; {
+    const { currentChat, messages, isMessagesLoading, sendMessage } = useContext(ChatContext);
+    const { user } = useContext(AuthContext);
+    const [newMessage, setNewMessage] = useState("");
+
+    const { recipientUser } = useFetchRecipient(currentChat, user);
+
+    const handleSendMessage = () =&gt; {
+        if (newMessage.trim()) {
+            sendMessage(currentChat._id, user._id, newMessage);
+            setNewMessage("");
+        }
+    };
+
+    if (!recipientUser) {
+        return (
+            &lt;p style={{ textAlign: 'center', width: '100%' }}&gt;
+                No conversation selected yet.
+            &lt;/p&gt;
+        );
+    }
+
+    if (isMessagesLoading) {
+        return (
+            &lt;p style={{ textAlign: 'center', width: '100%' }}&gt;
+                Loading chat...
+            &lt;/p&gt;
+        );
+    }
+
+    return (
+        &lt;Stack gap={4
+
+</code></pre>
+</li>
+</ol>
+<p>} className="chat-box"&gt;
+<div className="chat-header">
+<strong>{recipientUser.name}</strong>
+</div>
+<Stack gap={3} className="messages">
+{messages.map((message, index) =&gt; (
+&lt;Stack
+key={index}
+direction="horizontal"
+className={<code>message ${message.senderId === user._id ? 'self' : ''}</code>}
+&gt;
+<span>{message.text}</span>
+<span className="message-footer">
+{moment(message.createdAt).calendar()}
+</span>
+</Stack>
+))}
+</Stack>
+<div className="chat-input">
+&lt;input
+type="text"
+value={newMessage}
+onChange={(e) =&gt; setNewMessage(e.target.value)}
+placeholder="Type a message..."
+/&gt;
+<button onClick={handleSendMessage}>Send</button>
+</div>
+</Stack>
+);
+};</p>
+<p>export default ChatBox;</p>
+<pre><code>
+### Step 5: Updating CSS for ChatBox
+
+Finally, we need to add some custom styles to `index.css` to ensure our chat box and messages are displayed correctly.
+
+5. **Update `index.css`:**
+
+```css
+/* client/src/index.css */
+
+.chat-box {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    height: 85vh;
+    overflow-y: auto;
+}
+
+.chat-header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.messages {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 8px;
+    background: #f1f1f1;
+    margin-bottom: 10px;
+    max-width: 60%;
+}
+
+.message.self {
+    align-self: flex-end;
+    background: #007bff;
+    color: white;
+}
+
+.message-footer {
+    font-size: 12px;
+    color: #888;
+}
+
+.chat-input {
+    display: flex;
+    align-items: center;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+}
+
+.chat-input button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+}
+</code></pre>
+<h3 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h3>
+<p>In this tutorial, we successfully integrated Socket.IO for real-time messaging in our chat application. We set up the server and client to handle connections and events, allowing us to send and receive messages instantly. In the next tutorial, we will add a notification system to notify users of new messages. Stay tuned for more updates and features in our chat application.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="14-get-messages.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="16-socket-io.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="14-get-messages.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="16-socket-io.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

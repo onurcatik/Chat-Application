@@ -1,0 +1,390 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Create Chats - Documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="00-introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="01-authentication-apis-in-node-js.html"><strong aria-hidden="true">2.</strong> Authentication APIs in Node.js</a></li><li class="chapter-item expanded "><a href="02-react-router-dom-v6.html"><strong aria-hidden="true">3.</strong> react-router-dom v6</a></li><li class="chapter-item expanded "><a href="03-react-bootstrap.html"><strong aria-hidden="true">4.</strong> React Bootstrap</a></li><li class="chapter-item expanded "><a href="04-context-api.html"><strong aria-hidden="true">5.</strong> Context API</a></li><li class="chapter-item expanded "><a href="05-register-user.html"><strong aria-hidden="true">6.</strong> Register User</a></li><li class="chapter-item expanded "><a href="06-protecting-routes.html"><strong aria-hidden="true">7.</strong> Protecting Routes</a></li><li class="chapter-item expanded "><a href="07-logout-user.html"><strong aria-hidden="true">8.</strong> Logout User</a></li><li class="chapter-item expanded "><a href="08-login-user.html"><strong aria-hidden="true">9.</strong> Login User</a></li><li class="chapter-item expanded "><a href="09-chat-apis.html"><strong aria-hidden="true">10.</strong> Chat APIs</a></li><li class="chapter-item expanded "><a href="10-messages-apis.html"><strong aria-hidden="true">11.</strong> Messages APIs</a></li><li class="chapter-item expanded "><a href="11-fetch-chats.html"><strong aria-hidden="true">12.</strong> Fetch Chats</a></li><li class="chapter-item expanded "><a href="12-list-chats.html"><strong aria-hidden="true">13.</strong> List Chats</a></li><li class="chapter-item expanded "><a href="13-create-chats.html" class="active"><strong aria-hidden="true">14.</strong> Create Chats</a></li><li class="chapter-item expanded "><a href="14-get-messages.html"><strong aria-hidden="true">15.</strong> Get Messages</a></li><li class="chapter-item expanded "><a href="15-send-messages.html"><strong aria-hidden="true">16.</strong> Send Messages</a></li><li class="chapter-item expanded "><a href="16-socket-io.html"><strong aria-hidden="true">17.</strong> socket.io</a></li><li class="chapter-item expanded "><a href="17-notifications.html"><strong aria-hidden="true">18.</strong> Notifications</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="building-a-real-time-chat-application-part-13"><a class="header" href="#building-a-real-time-chat-application-part-13">Building a Real-Time Chat Application (Part 13)</a></h2>
+<h3 id="creating-and-listing-user-chats-in-react"><a class="header" href="#creating-and-listing-user-chats-in-react">Creating and Listing User Chats in React</a></h3>
+<p>In this part of the tutorial, we will focus on the ability to create a new chat when clicking on a user from the list of potential chats. This functionality will involve updating the chat context and making a POST request to our backend API to create the chat. Let's dive into the details.</p>
+<h3 id="step-1-updating-chat-context-for-potential-chats"><a class="header" href="#step-1-updating-chat-context-for-potential-chats">Step 1: Updating Chat Context for Potential Chats</a></h3>
+<p>We need to update our chat context to include functionality for handling potential chats. This includes fetching all users and filtering them to exclude the currently logged-in user and users with whom we already have a chat.</p>
+<ol>
+<li>
+<p><strong>Update Chat Context:</strong></p>
+<pre><code class="language-javascript">// client/src/context/ChatContext.jsx
+import React, { createContext, useState, useEffect, useCallback } from 'react';
+import { getRequest, postRequest } from '../services';
+import { baseURL } from '../services';
+
+export const ChatContext = createContext();
+
+export const ChatContextProvider = ({ children, user }) =&gt; {
+    const [userChats, setUserChats] = useState(null);
+    const [isUserChatsLoading, setIsUserChatsLoading] = useState(false);
+    const [userChatsError, setUserChatsError] = useState(null);
+    const [potentialChats, setPotentialChats] = useState([]);
+
+    useEffect(() =&gt; {
+        const getUserChats = async () =&gt; {
+            if (!user || !user._id) return;
+            setIsUserChatsLoading(true);
+            setUserChatsError(null);
+
+            const response = await getRequest(`${baseURL}/chats/${user._id}`);
+            if (response.error) {
+                setUserChatsError(response);
+            } else {
+                setUserChats(response);
+            }
+            setIsUserChatsLoading(false);
+        };
+        getUserChats();
+    }, [user]);
+
+    useEffect(() =&gt; {
+        const getUsers = async () =&gt; {
+            const response = await getRequest(`${baseURL}/users`);
+            if (response.error) {
+                console.error(response.error);
+                return;
+            }
+
+            const pChats = response.filter((u) =&gt; {
+                if (u._id === user._id) return false;
+                if (userChats?.some((chat) =&gt;
+                    chat.members.includes(u._id))) return false;
+                return true;
+            });
+
+            setPotentialChats(pChats);
+        };
+
+        if (userChats) {
+            getUsers();
+        }
+    }, [userChats]);
+
+    const createChat = useCallback(async (firstId, secondId) =&gt; {
+        const response = await postRequest(`${baseURL}/chats`, {
+            firstId,
+            secondId,
+        });
+
+        if (!response.error) {
+            setUserChats((prev) =&gt; [...prev, response]);
+            setPotentialChats((prev) =&gt;
+                prev.filter((u) =&gt; u._id !== secondId)
+            );
+        }
+    }, []);
+
+    return (
+        &lt;ChatContext.Provider value={{ userChats, isUserChatsLoading, userChatsError, potentialChats, createChat }}&gt;
+            {children}
+        &lt;/ChatContext.Provider&gt;
+    );
+};
+</code></pre>
+</li>
+</ol>
+<h3 id="step-2-creating-the-potential-chats-component"><a class="header" href="#step-2-creating-the-potential-chats-component">Step 2: Creating the Potential Chats Component</a></h3>
+<p>We need a component to list potential users for starting new chats. This component will use the <code>ChatContext</code> to fetch and display potential chat users.</p>
+<ol start="2">
+<li>
+<p><strong>PotentialChats Component:</strong></p>
+<pre><code class="language-javascript">// client/src/components/Chat/PotentialChats.jsx
+import React, { useContext } from 'react';
+import { ChatContext } from '../../context/ChatContext';
+import { AuthContext } from '../../context/AuthContext';
+
+const PotentialChats = () =&gt; {
+    const { potentialChats, createChat } = useContext(ChatContext);
+    const { user } = useContext(AuthContext);
+
+    return (
+        &lt;div className="all-users"&gt;
+            {potentialChats.map((u, index) =&gt; (
+                &lt;div
+                    key={index}
+                    className="single-user"
+                    onClick={() =&gt; createChat(user._id, u._id)}
+                &gt;
+                    {u.name}
+                    &lt;span className="user-online"&gt;&lt;/span&gt;
+                &lt;/div&gt;
+            ))}
+        &lt;/div&gt;
+    );
+};
+
+export default PotentialChats;
+</code></pre>
+</li>
+</ol>
+<h3 id="step-3-integrating-potential-chats-into-the-main-chat-component"><a class="header" href="#step-3-integrating-potential-chats-into-the-main-chat-component">Step 3: Integrating Potential Chats into the Main Chat Component</a></h3>
+<p>Finally, we need to integrate the <code>PotentialChats</code> component into our main chat page so that it displays alongside the existing chats.</p>
+<ol start="3">
+<li>
+<p><strong>Update Chat Component:</strong></p>
+<pre><code class="language-javascript">// client/src/pages/Chat.jsx
+import React, { useContext } from 'react';
+import { Container, Stack } from 'react-bootstrap';
+import { ChatContext } from '../context/ChatContext';
+import UserCard from '../components/Chat/UserCard';
+import PotentialChats from '../components/Chat/PotentialChats';
+
+const Chat = () =&gt; {
+    const { userChats, isUserChatsLoading, userChatsError } = useContext(ChatContext);
+
+    if (isUserChatsLoading) {
+        return &lt;p&gt;Loading chats...&lt;/p&gt;;
+    }
+
+    if (userChatsError) {
+        return &lt;p&gt;Error loading chats: {userChatsError.message}&lt;/p&gt;;
+    }
+
+    return (
+        &lt;Container&gt;
+            &lt;Stack direction="horizontal" gap={4}&gt;
+                &lt;Stack gap={3} className="user-chat-list"&gt;
+                    {userChats?.map((chat, index) =&gt; (
+                        &lt;UserCard key={index} chat={chat} /&gt;
+                    ))}
+                &lt;/Stack&gt;
+                &lt;div className="chat-box"&gt;Chat box here&lt;/div&gt;
+            &lt;/Stack&gt;
+            &lt;PotentialChats /&gt;
+        &lt;/Container&gt;
+    );
+};
+
+export default Chat;
+</code></pre>
+</li>
+</ol>
+<h3 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h3>
+<p>In this tutorial, we enhanced our chat application by implementing the ability to create new chats with users who are not already in the chat list. We added the necessary state management and API calls to handle fetching users, filtering out the current user and already existing chat users, and creating new chats.</p>
+<p>Next, we will focus on fetching messages for a selected chat and displaying them in the chat box. This will further enhance the real-time communication capabilities of our application. Stay tuned for more updates and features in our chat application.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="12-list-chats.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="14-get-messages.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="12-list-chats.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="14-get-messages.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
