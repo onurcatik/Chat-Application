@@ -94,9 +94,9 @@ export const updateProfile = async (req, res) => {
     const { fullName, email, profilePic } = req.body;
     const userId = req.user._id;
 
-    if (!fullName || !email) {
-      return res.status(400).json({ message: "Full Name and Email are required" });
-    }
+    // if (!fullName || !email) {
+    //   return res.status(400).json({ message: "Full Name and Email are required" });
+    // }
 
     const updates = { fullName, email };
 
