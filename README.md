@@ -1,7 +1,4 @@
-
-
-
-# MERN xChat Messaging App
+# MERN Chat-Application Messaging App
 
 This project is a feature-rich real-time messaging application built using the MERN stack, Socket.io, and TailwindCSS. It incorporates modern web development practices, including real-time messaging, user authentication, and a responsive UI.
 
@@ -9,7 +6,7 @@ This project is a feature-rich real-time messaging application built using the M
 
 - **Tech Stack**: MERN (MongoDB, Express, React, Node.js) + Socket.io + TailwindCSS + Daisy UI
 - **Authentication & Authorization**: Securely manage user access with JWT.
-- **Real-Time Messaging**: Communicate instantly with Socket.io.
+- **Real-Time Messaging**: Communƒicate instantly with Socket.io.
 - **Online User Status**: Display the status of online users.
 - **Global State Management**: Manage application state seamlessly with Zustand.
 - **Error Handling**: Robust error handling on both the server and client sides.
@@ -100,7 +97,7 @@ Ensure you have the following installed on your system:
 
 Follow the instructions in the deployment guide to host your application on platforms like Vercel or Heroku.
 
-**Live Demo**: [Chat-App Messaging](https://xchat-3k1f.onrender.com/login)
+
 
 
 ### Key Fixes & Improvements
