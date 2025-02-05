@@ -122,7 +122,7 @@ const ChatAppWelcome = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          Welcome to xChat
+          Welcome to Chat-App
         </motion.h1>
 
         {/* Subheading */}
